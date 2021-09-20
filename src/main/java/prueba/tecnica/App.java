@@ -22,7 +22,7 @@ public class App {
 		// Sleep simplmente para poder visualizarlo mejor
 		dormir(2);
 		p.start();
-		/*
+		
 		// Generamos los monos con un for
 		for (int i = 0; i < numMonos; i++) {
 			// Obtenemos la dirección del mono
@@ -34,7 +34,7 @@ public class App {
 			// Obtenemos un numero random para dormir para generar los monos
 			int randomDormir = r.nextInt(8) + 1;
 			dormir(randomDormir);
-		}*/
+		}
 		 
 		//PRUEBAS
 		//Todos los monos de un mismo lugar
@@ -47,7 +47,7 @@ public class App {
 		for (int i = 0; i < 5; i++) {
 			Mono m = new Mono("oeste", "Mono - " + i, cuerda);
 			m.start();
-		}*/
+		}
 		
 		//Monos del este, intercalado uno del oeste a mitad
 		for (int i = 0; i < 10; i++) {
@@ -57,8 +57,8 @@ public class App {
 			Mono m2 = new Mono("oeste", "MONO OESTE", cuerda);
 			m2.start();
 		}
-		dormir(1);
-	}/*
+		dormir(1);*/
+	/*
 		
 		for (int i = 0; i < 10; i++) {
 		Mono m = new Mono("oeste", "Mono - " + i, cuerda);
@@ -97,6 +97,7 @@ public class App {
 
 		
 		}
+
 		Mono m = new Mono("oeste", "Mono - OESTE", cuerda);
 		m.start();
 
@@ -104,8 +105,8 @@ public class App {
 		*/
 		
 		
-
 	}
+	
 
 	/*
 	 * Método para dormir el hilo picipal y generar los monos de forma espaciada.
