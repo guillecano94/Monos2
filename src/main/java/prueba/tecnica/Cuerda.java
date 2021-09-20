@@ -137,7 +137,6 @@ public class Cuerda {
 			// pasr, se le da prioridad al mono que quiere pasar y se cambia el estado de
 			// prioridadEste al del mono.
 			if (!cuerda.peek().getDireccion().equals(m.getDireccion())) {
-				System.out.println("HOLA");
 				prioridadEste = m.getDireccion().equals("este");
 			}
 		}
