@@ -11,6 +11,7 @@ public class App {
 		ArrayList<String> posibilidades = new ArrayList<String>();
 		posibilidades.add("este");
 		posibilidades.add("oeste");
+		
 		Random r = new Random();
 		Cuerda cuerda = new Cuerda();
 		// Hilo a parte para imprimir el estado de la cuerda.
