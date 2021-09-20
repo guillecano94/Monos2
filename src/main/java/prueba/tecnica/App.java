@@ -22,6 +22,7 @@ public class App {
 		// Sleep simplmente para poder visualizarlo mejor
 		dormir(2);
 		p.start();
+		/*
 		// Generamos los monos con un for
 		for (int i = 0; i < numMonos; i++) {
 			// Obtenemos la dirección del mono
@@ -33,7 +34,76 @@ public class App {
 			// Obtenemos un numero random para dormir para generar los monos
 			int randomDormir = r.nextInt(8) + 1;
 			dormir(randomDormir);
+		}*/
+		 
+		//PRUEBAS
+		//Todos los monos de un mismo lugar
+		/*
+		for (int i = 0; i < 5; i++) {
+			Mono m = new Mono("este", "Mono - " + i, cuerda);
+			m.start();
 		}
+		
+		for (int i = 0; i < 5; i++) {
+			Mono m = new Mono("oeste", "Mono - " + i, cuerda);
+			m.start();
+		}*/
+		
+		//Monos del este, intercalado uno del oeste a mitad
+		for (int i = 0; i < 10; i++) {
+		Mono m = new Mono("este", "Mono - " + i, cuerda);
+		m.start();
+		if(i==5) {
+			Mono m2 = new Mono("oeste", "MONO OESTE", cuerda);
+			m2.start();
+		}
+		dormir(1);
+	}/*
+		
+		for (int i = 0; i < 10; i++) {
+		Mono m = new Mono("oeste", "Mono - " + i, cuerda);
+		m.start();
+		if(i==5) {
+			Mono m2 = new Mono("este", "MONO ESTE", cuerda);
+			m2.start();
+		}
+		dormir(1);
+	}
+		
+		for (int i = 0; i < 10; i++) {
+			Mono m = new Mono("oeste", "Mono - " + i, cuerda);
+			m.start();
+			if(i==2 || i==5) {
+				Mono m2 = new Mono("este", "MONO ESTE", cuerda);
+				m2.start();
+			}
+		}
+		*/
+		/*
+		for (int i = 0; i < 10; i++) {
+			int randomDirección = r.nextInt(2);
+			Mono m = new Mono(posibilidades.get(randomDirección), "Mono - " + i, cuerda);
+			m.start();
+			dormir(1);
+			}*/
+			
+		
+		
+/*
+		for (int i = 0; i < 10; i++) {
+			int randomDirección = r.nextInt(2);
+			Mono m = new Mono("este", "Mono - " + i, cuerda);
+			m.start();
+
+		
+		}
+		Mono m = new Mono("oeste", "Mono - OESTE", cuerda);
+		m.start();
+
+		
+		*/
+		
+		
 
 	}
 
