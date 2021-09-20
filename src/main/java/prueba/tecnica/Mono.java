@@ -17,6 +17,8 @@ public class Mono extends Thread {
 		cuerda.encolar(this);
 		// Método principal para cruzar
 		cuerda.cruzar(this);
+		cuerda.subirCuerda(this); 
+		cuerda.desplazar(this);
 		// Simulamos el rato que está cruzando la cuerda
 		dormir(4);
 		// Método para salir
