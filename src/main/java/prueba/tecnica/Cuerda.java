@@ -20,6 +20,9 @@ public class Cuerda {
 	// oeste es el que tiene
 	// la prioridad.
 	private boolean prioridadEste = true;
+	private boolean subiendoEste = false;
+	private boolean subiendoOeste = false;
+
 
 	/*
 	 * Método para encolar los monos en su correspondiente sitio
@@ -48,7 +51,7 @@ public class Cuerda {
 		if (m.getDireccion().equals("este")) {
 			// El hilo entrará en espera si hay monos cruzando desde el oeste, o si no tiene
 			// prioridad.
-			while ((hayMonosCruzandoOesteEste || !prioridadEste)) {
+			while (hayMonosCruzandoOesteEste || !prioridadEste || subiendoOeste ) {
 				try {
 					// Espera a ser llamado
 					wait();
@@ -57,28 +60,16 @@ public class Cuerda {
 					e.printStackTrace();
 				}
 			}
-			// Si sale de while, significa que puede continuar su ejecución porque cumple
-			// las condiciones para pasar
-			// Eliminamos ese mono de su cola se encola en la cuerda.
-			colaEste.remove(m);
-			cuerda.add(m);
-			// Tiempo de subida sin salir del método
-			m.dormir(1);
-			// Actualizamos la variable de hayMonosCruzandoEsteOeste a true, porque ahora
-			// hay un poco subiendo
-			hayMonosCruzandoEsteOeste = true;
+			
 		} else {
-			while ((hayMonosCruzandoEsteOeste || prioridadEste)) {
+			while (hayMonosCruzandoEsteOeste || prioridadEste || subiendoEste) {
 				try {
 					wait();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
-			colaOeste.remove(m);
-			cuerda.add(m);
-			m.dormir(1);
-			hayMonosCruzandoOesteEste = true;
+
 
 		}
 	}
@@ -146,11 +137,40 @@ public class Cuerda {
 			// pasr, se le da prioridad al mono que quiere pasar y se cambia el estado de
 			// prioridadEste al del mono.
 			if (!cuerda.peek().getDireccion().equals(m.getDireccion())) {
+				System.out.println("HOLA");
 				prioridadEste = m.getDireccion().equals("este");
 			}
 		}
 	}
+	 
+	public synchronized void subirCuerda(Mono m) {
+		if(m.getDireccion().equals("este")) {
+			subiendoEste=true;
+			colaEste.remove(m);
+			m.dormir(1);
+			cuerda.add(m);
+			hayMonosCruzandoEsteOeste = true;
+		}
+		else {
+			subiendoOeste=true;
+			colaOeste.remove(m);
+			m.dormir(1);
+			cuerda.add(m);
+			hayMonosCruzandoOesteEste = true;
 
+		}
+	}
+
+	public synchronized void desplazar(Mono m) {
+		if(m.getDireccion().equals("este")) {
+			subiendoEste=false;
+		}
+		else {
+			subiendoOeste=false;
+		}
+		notifyAll();
+		
+	}
 	public ConcurrentLinkedQueue<Mono> getCuerda() {
 		return cuerda;
 	}
