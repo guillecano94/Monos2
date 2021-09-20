@@ -51,7 +51,7 @@ public class Cuerda {
 		if (m.getDireccion().equals("este")) {
 			// El hilo entrará en espera si hay monos cruzando desde el oeste, o si no tiene
 			// prioridad.
-			while (hayMonosCruzandoOesteEste || !prioridadEste || subiendoOeste ) {
+			while (hayMonosCruzandoOesteEste || !prioridadEste || subiendoEste) {
 				try {
 					// Espera a ser llamado
 					wait();
@@ -60,9 +60,13 @@ public class Cuerda {
 					e.printStackTrace();
 				}
 			}
+			subiendoEste=true;
+			hayMonosCruzandoEsteOeste = true;
+
+
 			
 		} else {
-			while (hayMonosCruzandoEsteOeste || prioridadEste || subiendoEste) {
+			while (hayMonosCruzandoEsteOeste || prioridadEste ||subiendoOeste) {
 				try {
 					wait();
 				} catch (InterruptedException e) {
@@ -70,6 +74,8 @@ public class Cuerda {
 				}
 			}
 
+			subiendoOeste=true;
+			hayMonosCruzandoOesteEste = true;
 
 		}
 	}
@@ -144,19 +150,14 @@ public class Cuerda {
 	 
 	public synchronized void subirCuerda(Mono m) {
 		if(m.getDireccion().equals("este")) {
-			subiendoEste=true;
 			colaEste.remove(m);
 			m.dormir(1);
 			cuerda.add(m);
-			hayMonosCruzandoEsteOeste = true;
 		}
 		else {
-			subiendoOeste=true;
 			colaOeste.remove(m);
 			m.dormir(1);
 			cuerda.add(m);
-			hayMonosCruzandoOesteEste = true;
-
 		}
 	}
 
